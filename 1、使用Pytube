@@ -1,0 +1,20 @@
+在Python里，有一个pip包“pytube”可以用来下载视频
+pip install pytube //使用该命令下载该包（请注意，这一条的命令均需在Powershell或者Command里进行）、
+而后，打开Python IDE，复制下列代码
+
+from pytube import YouTube
+
+def download_video(url, output_path='.'):
+    try:
+        yt = YouTube(url)
+        video_stream = yt.streams.get_highest_resolution()
+        print(f"Downloading {yt.title}...")
+        video_stream.download(output_path)
+        print(f"Downloaded successfully to {output_path}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+if __name__ == "__main__":
+    # URL of the video to be downloaded
+    video_url = input("Enter the YouTube video URL: ")
+    download_video(video_url)
+而后视频将会被保存在运行目录内
